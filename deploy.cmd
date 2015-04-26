@@ -90,12 +90,12 @@ IF !ERRORLEVEL! NEQ 0 goto error
 
 :: Custom 1. Build test project
 echo Building test project
-"%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp.Tests\MyWebApp.Tests.csproj"
+"%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp.Test\MyWebApp.Test.csproj"
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: Custom 2. Run tests
 echo Running tests
-vstest.console.exe "%DEPLOYMENT_SOURCE%\MvcTest.Tests\bin\Debug\MvcTest.Tests.dll"
+vstest.console.exe "%DEPLOYMENT_SOURCE%\MyWebApp.Test\bin\Debug\MyWebApp.Test.dll"
 IF !ERRORLEVEL! NEQ 0 goto error
 
 
