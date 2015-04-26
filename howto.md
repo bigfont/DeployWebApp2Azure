@@ -63,6 +63,27 @@
     git commit -m "Create empty ASP.NET Web Application"
     git push
 
+* Remember --> Azure will deploy this :-)
+
+# Integrate Unit Testing into Deployment 
+
+* Open MyWebApp.sln in Visual Studio
+* Right click the solution > Add > New Project > Visual C# > Test > MyWebApp.Test
+* Resultant directory structure
+
+    DeployWebApp2Azure
+        .git
+        .gitignore
+        MyWebApp.sln
+        MyWebApp.Test
+            MyWebApp.Text.csproj
+        MyWebApp
+            MyWebApp.csproj
+    
+    
+
+
+
 # Notes
 
 * By using Nuget, we can keep *most* binaries out of the repository.
