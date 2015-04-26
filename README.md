@@ -1,22 +1,22 @@
 These are the notes from a talk given at the [Azure Dev Camp in Victoria](http://www.meetup.com/Victoria-App-Developer/events/221644488/) on 25 April 2015. 
 
-Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out development scenarios and do continiuous integration over the long term. This talk will cover 
+Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out development scenarios and do continiuous integration over the long term. This talk will cover: 
 
 * NuGet in Visual Studio to keep assemblies out of version control
-* Git to commit locally and then push to a remote server (in the demo, we'll use GitHub) 
+* Git to commit locally and then push to a remote (in the demo, we'll use GitHub) 
 * Azure Web Apps that connect to GitHub (or another remote) for deployment from version control
 
-The lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. We'll also cover:
+This lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. For longer term continuous integration and testing scenarios, we'll also cover:
 
 * multiple deployment slots in Azure Web Apps that connect to multiple Git branches
-* Kudu deployment scripts that tell Azure to run our unit tests and only Sync the build if they pass
-* viewing Web Apps through mydomain.scm.azurewebsites.net
+* Kudu deployment scripts that tell Azure to run our unit tests and only Sync builds that pass
+* the web-based service control manager for Web Apps (at mydomain.scm.azurewebsites.net)
 
 In short, well cover:
 
     Local --> Remote --> Azure
 
-This is the LIVE result:
+This is the LIVE result (it isn't pretty - it's scaffolding):
 
 * http://deploywebapp2azure.azurewebsites.net/
 * http://deploywebapp2azure-staging.azurewebsites.net/
