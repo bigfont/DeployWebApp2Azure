@@ -82,6 +82,29 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 
 IF !ERRORLEVEL! NEQ 0 goto error
 
+
+
+::------------------
+::Custom Script
+::------------------
+
+:: Custom 1. Build test project
+echo Building test project
+"%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp.Tests\MyWebApp.Tests.csproj"
+IF !ERRORLEVEL! NEQ 0 goto error
+
+:: Custom 2. Run tests
+echo Running tests
+vstest.console.exe "%DEPLOYMENT_SOURCE%\MvcTest.Tests\bin\Debug\MvcTest.Tests.dll"
+IF !ERRORLEVEL! NEQ 0 goto error
+
+
+::-------------------
+::End Custom Script
+::-------------------
+
+
+
 :: 3. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
