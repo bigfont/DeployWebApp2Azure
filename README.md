@@ -2,6 +2,10 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
 
     Local --> Remote --> Azure
 
+http://deploywebapp2azure.azurewebsites.net/
+
+http://deploywebapp2azure-staging.azurewebsites.net/
+
 # Remote
 
 This is the remote repository that stores our source code.
