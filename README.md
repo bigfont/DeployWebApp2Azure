@@ -7,7 +7,7 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
 * NuGet in Visual Studio to keep assemblies out of version control
 * Git to commit locally and then push to a remote (in the demo, we'll use GitHub) 
     * we could also use Visual Studio Online 
-* Azure Web Apps that connect to GitHub (or another remote) for deployment from version control
+* Azure Web Apps that use Kudu to deploy from version control
 
 This lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. For longer term continuous integration and testing scenarios, we'll also cover:
 
