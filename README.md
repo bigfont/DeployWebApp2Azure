@@ -1,4 +1,14 @@
-Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out development scenarios. This talk will cover using NuGet in Visual Studio to keep assemblies out of version control. We'll cover using Git within Visual Studio to commit locally and then push to a remote server (in the demo, we'll use GitHub.) Next, we'll setup an Azure Web App and connect it to GitHub for deployment from version control. The lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. Time permitting, we'll touch on using multiple deployment slots in Azure Web Apps and multiple Git branches to enable other testing options. Further, we'll show how to tell Azure to run our unit tests and only Sync the build if they pass.
+Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out development scenarios and do continiuous integration. This talk will cover 
+
+* NuGet in Visual Studio to keep assemblies out of version control
+* Git to commit locally and then push to a remote server (in the demo, we'll use GitHub) 
+* creating an Azure Web App and connect it to GitHub for deployment from version control
+
+The lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. We'll also cover:
+
+* multiple deployment slots in Azure Web Apps that connect to multiple Git branches
+* Kudu deployment scripts that tell Azure to run our unit tests and only Sync the build if they pass
+* viewing the website through mydomain.scm.azurewebsites.net
 
     Local --> Remote --> Azure
 
