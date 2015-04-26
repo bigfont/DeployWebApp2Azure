@@ -1,3 +1,5 @@
+These are the notes from a talk given at the [Azure Dev Camp in Victoria][http://www.meetup.com/Victoria-App-Developer/events/221644488/] on 25 April 2015. 
+
 Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out development scenarios and do continiuous integration over the long term. This talk will cover 
 
 * NuGet in Visual Studio to keep assemblies out of version control
