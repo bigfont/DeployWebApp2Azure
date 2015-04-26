@@ -1,12 +1,18 @@
-Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out development scenarios. This talk will cover using NuGet in Visual Studio to keep assemblies out of version control. We'll cover using Git within Visual Studio to commit locally and then push to a remote server (in the demo, we'll use GitHub.) Next, we'll setup an Azure Web App and connect it to GitHub for deployment from version control. The lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. Time permitting, we'll touch on using multiple deployment slots in Azure Web Apps and multiple Git branches to enable other testing options.
+Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out development scenarios. This talk will cover using NuGet in Visual Studio to keep assemblies out of version control. We'll cover using Git within Visual Studio to commit locally and then push to a remote server (in the demo, we'll use GitHub.) Next, we'll setup an Azure Web App and connect it to GitHub for deployment from version control. The lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. Time permitting, we'll touch on using multiple deployment slots in Azure Web Apps and multiple Git branches to enable other testing options. Further, we'll show how to tell Azure to run our unit tests and only Sync the build if they pass.
+
+    Local --> Remote --> Azure
 
 # Remote
+
+This is the remote repository that stores our source code.
 
 * Setup a remote repository. 
 * Copy it's uri.
 * e.g. `git@github.com:shaunluttin/DeployWebApp2Azure.git`
 
 # Local
+
+The is our development environment.
 
 * Create a new directory. 
 * Initiate git to speak to the remote.
@@ -17,6 +23,9 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
     cd DeployWebApp2Azure
     New-Item -type f .gitignore
     Add-Content .gitignore ("bin/" + "`n" + "obj/" + "`n")
+    
+[Git]
+
     git init
     git remote add origin <uri>
     git pull origin master
@@ -27,6 +36,8 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
     git push --set-upstream-to=origin/staging staging
 
 # Azure
+
+This is where we're hosting our Web App.
 
 * Create new Azure Web App
 
@@ -64,7 +75,7 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
             
 * Add, Commit, Push (we're on staging right now).
 
-[PowerShell]
+[Git]
 
     git add -A
     git commit -m "Create empty ASP.NET Web Application"
@@ -91,7 +102,7 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
     
 * Add, commit, and push
 
-[PowerShell]
+[Git]
 
     git add -A
     git commit -m "Add unit tests."
@@ -104,7 +115,7 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
 * Install Azure Command Line Interface
 * Create a custom deployment script
 
-[PowerShell]
+[Command Line]
 
     npm install azure-cli -g
     azure site deploymentscript --aspWAP MyWebApp\MyWebApp.csproj -s MyWebApp.sln
@@ -126,7 +137,7 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
 
 * Add, commit, and push
 
-[PowerShell]
+[Git]
 
     git add -A
     git commit -m "Run unit tests on deployment."
@@ -137,3 +148,5 @@ Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out developmen
 * By using Nuget, we can keep *most* binaries out of the repository.
 * Be sure to add a .gitignore file with bin/ and obj/
 * If you want to run \Release\ tests, then build with /property:Configuration=Release
+* Kudu builds into a temporary folder and then syncs the result if the build and tests succeed.
+* We can switch staging and master with a single click of Swap from the Web App dashboard.
