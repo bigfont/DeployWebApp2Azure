@@ -61,19 +61,19 @@ This is where we're hosting our Web App.
 * Go to its Dashboard 
     * Setup deployment from source control
     * GitHub
-    * Repository Name > DeployWebApp2Azure
-    * Branch to Deploy > master
+    * Repository Name > `DeployWebApp2Azure`
+    * Branch to Deploy > `master`
 
-* Go to Azure Dashboard
+* Return to the Azure Dashboard
     * Add a new deployment slot
     * staging 
     * Don't clone
 
-* Go to Azure Dashboard for staging deployment
+* Go to Azure Dashboard for the *staging deployment slot*
     * Setup deployment from source control
     * GitHub
-    * RepositoryName > DeployWebApp2Azure
-    * Branch to Deploy > staging
+    * RepositoryName > `DeployWebApp2Azure`
+    * Branch to Deploy > `staging`
 
 # Create ASP.NET Web Application
 
