@@ -52,6 +52,8 @@
 * New a new Empty Web App (New Project > Templates > Visual C# > Web > ASP.NET Web Application)
 * Resultant directory structure
 
+[Directory Structure]
+
     DeployWebApp2Azure
         .git
         .gitignore
@@ -75,6 +77,8 @@
 * Right click the solution > Add > New Project > Visual C# > Test > MyWebApp.Test
 * Resultant directory structure
 
+[Directory Structure]
+
     DeployWebApp2Azure
         .git
         .gitignore
@@ -85,6 +89,8 @@
             MyWebApp.csproj
     
 * Add, commit, and push
+
+[PowerShell]
 
     git add -A
     git commit -m "Add unit tests."
@@ -97,11 +103,15 @@
 * Install Azure Command Line Interface
 * Create a custom deployment script
 
+[PowerShell]
+
     npm install azure-cli -g
     azure site deploymentscript --aspWAP MyWebApp\MyWebApp.csproj -s MyWebApp.sln
 
 * Be careful with your file paths!
 * Edit the Kudu deploy.cmd file.
+
+[Kudu Script]
 
     :: Custom 1. Build test project
     echo Building test project
@@ -114,6 +124,8 @@
     IF !ERRORLEVEL! NEQ 0 goto error
 
 * Add, commit, and push
+
+[PowerShell]
 
     git add -A
     git commit -m "Run unit tests on deployment."
