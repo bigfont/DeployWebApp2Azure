@@ -10,6 +10,8 @@
 * Create a new directory. 
 * Initiate git to speak to the remote.
 
+[PowerShell]
+
     New-Item -type dir DeployWebApp2Azure
     cd DeployWebApp2Azure
     New-Item -type f .gitignore
@@ -59,13 +61,15 @@
             
 * Add, Commit, Push (we're on staging right now).
 
+[PowerShell]
+
     git add -A
     git commit -m "Create empty ASP.NET Web Application"
     git push
 
 * Remember --> Azure will deploy this :-)
 
-# Integrate Unit Testing into Deployment 
+# Add Unit Test 
 
 * Open MyWebApp.sln in Visual Studio
 * Right click the solution > Add > New Project > Visual C# > Test > MyWebApp.Test
@@ -80,12 +84,43 @@
         MyWebApp
             MyWebApp.csproj
     
-    
+* Add, commit, and push
 
+    git add -A
+    git commit -m "Add unit tests."
+    git push
 
+* The unit tests will not build nor run yet. 
+
+# Integrate Unit Tests into Deployment
+
+* Install Azure Command Line Interface
+* Create a custom deployment script
+
+    npm install azure-cli -g
+    azure site deploymentscript --aspWAP MyWebApp\MyWebApp.csproj -s MyWebApp.sln
+
+* Be careful with your file paths!
+* Edit the Kudu deploy.cmd file.
+
+    :: Custom 1. Build test project
+    echo Building test project
+    "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp.Tests\MyWebApp.Tests.csproj"
+    IF !ERRORLEVEL! NEQ 0 goto error
+
+    :: Custom 2. Run tests
+    echo Running tests
+    vstest.console.exe "%DEPLOYMENT_SOURCE%\MvcTest.Tests\bin\Debug\MvcTest.Tests.dll"
+    IF !ERRORLEVEL! NEQ 0 goto error
+
+* Add, commit, and push
+
+    git add -A
+    git commit -m "Run unit tests on deployment."
+    git push
 
 # Notes
 
 * By using Nuget, we can keep *most* binaries out of the repository.
 * Be sure to add a .gitignore file with bin/ and obj/
-
+* If you want to run \Release\ tests, then build with /property:Configuration=Release
