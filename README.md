@@ -68,8 +68,7 @@ This is where we're hosting our Web App.
     * Branch to Deploy > `master`
 
 * Return to the Azure Dashboard
-    * Add a new deployment slot
-    * staging 
+    * Add a new deployment slot named `staging`
     * Don't clone
 
 * Go to Azure Dashboard for the *staging deployment slot*
@@ -116,7 +115,7 @@ This is where we're hosting our Web App.
         .gitignore
         MyWebApp.sln
         MyWebApp.Test
-            MyWebApp.Text.csproj
+            MyWebApp.Test.csproj
         MyWebApp
             MyWebApp.csproj
     
@@ -147,12 +146,12 @@ This is where we're hosting our Web App.
 
     :: Custom 1. Build test project
     echo Building test project
-    "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp.Tests\MyWebApp.Tests.csproj"
+    "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp.Test\MyWebApp.Test.csproj"
     IF !ERRORLEVEL! NEQ 0 goto error
 
     :: Custom 2. Run tests
     echo Running tests
-    vstest.console.exe "%DEPLOYMENT_SOURCE%\MvcTest.Tests\bin\Debug\MvcTest.Tests.dll"
+    vstest.console.exe "%DEPLOYMENT_SOURCE%\MyWebApp.Test\bin\Debug\MyWebApp.Test.dll"
     IF !ERRORLEVEL! NEQ 0 goto error
 
 * Add, commit, and push
