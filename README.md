@@ -1,11 +1,13 @@
-These are the notes from a talk given at the [Azure Dev Camp in Victoria](http://www.meetup.com/Victoria-App-Developer/events/221644488/) on 25 April 2015. 
+These are the notes from a talk given at the [Azure Dev Camp in Victoria](http://www.meetup.com/Victoria-App-Developer/events/221644488/) on 25 April 2015. They are a work in progress. If you see something that doesn't seem quite right, let me know, via an email, a pull request, or a tweet to @dicshaunary. I'll update the demo and its notes if appropriate. We'll present this again on [23 May in Vancouver](http://www.meetup.com/Vancouver-Windows-Platform-Developers-Group/events/221830707/).
+
+# Overview
 
 Use Visual Studio, Git Deploy, and Azure Web Apps to quickly test out development scenarios or do continiuous integration over the long term. This talk will cover: 
 
 * NuGet in Visual Studio to keep assemblies out of version control
 * Git to commit locally and then push to a remote (in the demo, we'll use GitHub) 
     * we could also use Visual Studio Online 
-* Azure Web Apps that connect to GitHub (or another remote) for deployment from version control
+* Azure Web Apps that use Kudu to deploy from version control
 
 This lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. For longer term continuous integration and testing scenarios, we'll also cover:
 
