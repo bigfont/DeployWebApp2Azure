@@ -81,6 +81,8 @@ There are both UI gestures to do this or we can use the Azure Command Line Inter
     azure account download
     azure account import <file>
     azure site create --location "West US" Deploy2Azure
+    # after doing this, 
+    # we might have to upgrade its pricing tier
 
 We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
 
