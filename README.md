@@ -33,7 +33,10 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
 * A was to create a remote Git repository (e.g. a GitHub account.) 
 * A Microsoft Azure account (free and with an automatic spending cap of zero.)
 * Git installed locally (msysgit.github.io)
-* PowerShell (only for the purposes of this demo.)
+* For the purpose of this demo
+  * PowerShell (only for the purposes of this demo.)
+  * Node
+  * Azure Command Line Interface
 
 # Setup a Remote Git Repo
 
