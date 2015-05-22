@@ -39,7 +39,7 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
 
 This is the remote Git repository that stores our source code. [github.com]() has detailed instructions.
 
-* Setup a remote repository. 
+* Setup a remote repository with a README.md
 * Copy it's uri.
 * For the demo we'll use `git@github.com:bigfont/Deploy2Azure.git`
 
@@ -58,12 +58,12 @@ The is our development environment.
 
     git init
     git remote add origin git@github.com:bigfont/Deploy2Azure.git
-    git pull origin master
+    # git pull origin master
     git add -A
     git commit -m "Initial commit."
     git push --set-upstream origin master
     git checkout -b staging
-    git push --set-upstream-to=origin/staging staging
+    git push --set-upstream origin staging
 
 # Azure
 
