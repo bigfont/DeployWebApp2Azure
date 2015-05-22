@@ -56,7 +56,7 @@ The is our development environment.
     cd Deploy2Azure
     New-Item -type f .gitignore
     Add-Content .gitignore ("bin/" + "`n" + "obj/" + "`n")
-    New-Item -type f index.html 
+    Add-Content index.html "Hello World."
     
 [Git & PowerShell] Initiate git to speak to the remote with a `master` and `staging` branch.
 
