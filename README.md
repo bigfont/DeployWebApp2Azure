@@ -182,7 +182,40 @@ Again, this will deploy to Azure with the default deployment commands.
 * Default is still `index.html` with Hello World.
 * We can also view `~/default` now. 
 
+# Local: Add Unit Tests
+
+* Open MyWebApp.sln in Visual Studio
+* Right click the solution > Add > New Project > Visual C# > Test
+  * Name: `MyWebApp.Test`
+  * Location: `<my-git-repository-dir>`
+
+[Directory Structure]
+
+    SillyFrogs
+		.git
+		.vs
+		MyWebApp
+		MyWebApp.Test
+		packages
+		.deployment
+		.gitignore
+		deploy-nothing.cmd
+		index.html
+		MyWebApp.sln
+    
+* Add, commit, and push
+
+[Git]
+
+    git add -A
+    git commit -m "Add unit tests."
+    git push
+
+* Note: In Azure, the unit tests will not build nor run yet.
+
 # Local: Add a Simple, Custom Deployment Script
+
+This is an aside to show how deployment scripts work.
 
 * Create a custom deployment script
 
@@ -198,38 +231,22 @@ The `.deployment` file is optional. We can set value either in it or in the app 
 
 Note: This no longer does any deployment! It **only** echos "Hello World."
 
-# Local: Add Unit Tests
-
-* Open MyWebApp.sln in Visual Studio
-* Right click the solution > Add > New Project > Visual C# > Test > MyWebApp.Test
-* Resultant directory structure
-
-[Directory Structure]
-
-    SillyFrogs
-        .git
-        .gitignore
-        MyWebApp.sln
-        MyWebApp.Test
-            MyWebApp.Test.csproj
-        MyWebApp
-            MyWebApp.csproj
-    
-* Add, commit, and push
-
-[Git]
-
-    git add -A
-    git commit -m "Add unit tests."
-    git push
-
-* The unit tests will not build nor run yet. 
-
 # Integrate Unit Tests into Deployment
 
-* Edit the Kudu deploy.cmd file.
+* Generate a deploy.cmd with scaffolding for MyWebApp.
+* For help, type `azure site deploymentscript -h`
 
-[Kudu Script]
+[cmd]
+
+     azure site deploymentscript --aspWAP .\MyWebApp\MyWebApp.csproj -s .\MyWebApp.sln
+
+Now, lets copy and edit the Kudu deploy.cmd file to integrate tests.
+
+[PowerShell]
+
+    Copy-Item deploy.cmd deploy-tests.cmd
+
+[Kudu Script] Add this before `:: 3 Kudu Sync`
 
     :: Custom 1. Build test project
     echo Building test project
@@ -246,8 +263,23 @@ Note: This no longer does any deployment! It **only** echos "Hello World."
 [Git]
 
     git add -A
-    git commit -m "Run unit tests on deployment."
+    git commit -m "Add a deploy-tests deployment command file."
     git push
+
+This won't run until we tell Azure to do so, either by updating the `.deployment` file to run `deploy-tests.cmd` or add an app setting via the portal. Let's do the former for now.
+
+Since we added a failing test, Kudu will not sync. 
+
+# Kudu Sync
+
+     -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+
+    -v Verbose logging with maximum number of output lines
+    -f Source directory to sync
+    -t Destination directory to sync
+    -n Next manifest file path
+    -p Previous manifest file path
+    -i List of files/directories not to sync, delimited by `;`
 
 # Notes
 
