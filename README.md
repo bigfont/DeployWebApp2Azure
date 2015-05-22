@@ -123,7 +123,7 @@ At this point, we will have two **Hello World.** sites. One for master, another 
 # Local: Create ASP.NET Web Application
 
 * Open Visual Studio
-* New a new Empty Web App
+* Create a new Empty Web App
 * File New Project > Templates > Visual C# > Web > ASP.NET Web Application
   * Name: `MyWebApp` 
   * Location: `<my-local-git-repo-dir`
@@ -137,10 +137,12 @@ At this point, we will have two **Hello World.** sites. One for master, another 
 
     DeployWebApp2Azure
         .git
-        .gitignore
-        MyWebApp.sln
+		.vs
         MyWebApp
-            MyWebApp.csproj
+            MyWebApp.csproj          <----- this is what Azure will build
+        .gitignore
+        index.html                   <----- this is what will render
+        MyWebApp.sln        
             
 * Add, Commit, Push (we're on staging right now).
 
