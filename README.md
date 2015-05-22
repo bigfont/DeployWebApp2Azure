@@ -28,13 +28,13 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
 * http://deploywebapp2azure.azurewebsites.net/
 * http://deploywebapp2azure-staging.azurewebsites.net/
 
-# Remote
+# Setup a Remote Git Repo
 
-This is the remote repository that stores our source code.
+This is the remote Git repository that stores our source code. github.com has detailed instructions.
 
 * Setup a remote repository. 
 * Copy it's uri.
-* e.g. `git@github.com:shaunluttin/DeployWebApp2Azure.git`
+* For the demo we'll use `git@github.com:shaunluttin/DeployWebApp2Azure.git`
 
 # Local
 
