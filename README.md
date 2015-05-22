@@ -92,7 +92,7 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
 * Return to the Azure Dashboard
     * Add a new deployment slot named `staging`
     * Don't clone
-    * (I believe we need to be in a non-free tier to do this.)gi
+    * (I believe we need to be in a non-free tier to do this.)
 
 * Go to Azure Dashboard for the *staging deployment slot*
     * Setup deployment from source control
