@@ -103,6 +103,14 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
     * RepositoryName > `Deploy2Azure`
     * Branch to Deploy > `staging`
 
+At this point, we will have two **Hello World.** sites. One for master, another for staging. We can demonstration by updating the index.html file in staging. 
+
+    git checkout staging
+    Add-Content index.html "Staging"
+    git add -A
+    git commit -m "Add staging content."
+    git push
+
 We can view the details of the deployments slot with this command. 
 
     azure site show deployapp2azure
