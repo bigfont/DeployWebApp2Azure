@@ -35,6 +35,7 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
 * Git installed locally (msysgit.github.io)
 * For the purpose of this demo
   * PowerShell
+  * NPM (the node package manager)
   * Node
   * Azure Command Line Interface
 
@@ -73,7 +74,7 @@ The is our development environment.
 
 This is where we're hosting our Web App.
 
-There are both UI gestures to do this or we can use the Azure Command Line Interface. 
+There are UI gestures to do this. Alternatively, we can use the `azure-cli`. 
 
 [CMD] Create a new MS Azure Web App
 
@@ -84,6 +85,7 @@ There are both UI gestures to do this or we can use the Azure Command Line Inter
     # after doing this, 
     # we might have to upgrade its pricing tier
     # to allow for multiple deployment slots
+    # portal.azure.com
 
 We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
 
@@ -98,7 +100,7 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
     * Don't clone
     * (I believe we need to be in a non-free tier to do this.)
 
-* Go to Azure Dashboard for the *staging deployment slot*
+* Go to Azure Dashboard for the staging deployment slot
     * Setup deployment from source control
     * GitHub
     * RepositoryName > `SillyFrogs`
@@ -106,7 +108,7 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
 
 We can view the details of the deployments slot with this command. 
 
-    azure site show SillyFrogs
+    azure site show SillyFrogs --slot staging
 
 At this point, we will have two **Hello World.** sites. One for master, another for staging. We can demonstration this by updating the index.html file in the `staging` branch with staging content.
 
@@ -120,7 +122,6 @@ At this point, we will have two **Hello World.** sites. One for master, another 
 
 # Local: Add a Simple Deployment Script
 
-* Install Azure Command Line Interface
 * Create a custom deployment script
 
 [PowerShell]
@@ -130,6 +131,7 @@ At this point, we will have two **Hello World.** sites. One for master, another 
     
 The `.deployment` file is optional. We can set value either in it or in the app settings of our Web App. To start with, let's just add `echo Hello world.` to our custom deployment file. 
 
+	Add-Content .deployment "[config] `r`n command = deploy.cmd"
     Add-Content deploy.cmd "echo Hello world.
     git add -A
     git commit -m "Add deployment script."
@@ -138,7 +140,14 @@ The `.deployment` file is optional. We can set value either in it or in the app 
 # Local: Create ASP.NET Web Application
 
 * Open Visual Studio
-* New a new Empty Web App (New Project > Templates > Visual C# > Web > ASP.NET Web Application)
+* New a new Empty Web App
+* File New Project > Templates > Visual C# > Web > ASP.NET Web Application
+  * Name: `MyWebApp` 
+  * Location: `<my-local-git-repo-dir`
+  * Solution Name: `Create new solution`
+  * Create directory for solution: `NO`
+  * Add to source control: `NO`
+
 * Resultant directory structure
 
 [Directory Structure]
