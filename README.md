@@ -4,24 +4,23 @@ We'll present this again on [23 May in Vancouver](http://www.meetup.com/Vancouve
 
 # Overview
 
-Use Visual Studio, Git, and Azure Web Apps to quickly test out development scenarios and/or do continuous integration over the long term. This talk will cover: 
+* Git (to commit locally and then push to a remote)
+* Visual Studio and ASP.NET (to build web apps)
+* Azure Web Apps (to host web apps)
+* Nuget (to keep assemblies out of version control)
+* Kudu, for deployments
 
-* NuGet in Visual Studio to keep assemblies out of version control
-* Git to commit locally and then push to a remote (in the demo, we'll use GitHub)
-    * we could also use Visual Studio Online 
-* Azure Web Apps that use Kudu to deploy from version control
+Scenarios
 
-This workflow can be lightweight enough for scenario testing, in which we spin up an Azure Web App and tear it down when we've finished. It can also support longer term continuous integration and testing scenarios. 
+* short-term scenario testing
+* long-term continuous integration
+
 
 We'll also cover:
 
-* multiple deployment slots in Azure Web Apps that connect to multiple Git branches
-* Kudu deployment scripts that tell Azure to run our unit tests and sync only builds that pass
-* the web-based service control manager for Web Apps (at mydomain.scm.azurewebsites.net)
-
-In short, well cover:
-
-    Local --> Remote --> Azure
+* multiple Azure deployment slots connected to multiple Git branches
+* custom Kudu deployment scripts for unit testing
+* web based service control manager for Web Apps (domain.scm.azurewebsites.net)
 
 This is the LIVE result (it isn't pretty - it's scaffolding):
 
@@ -30,18 +29,18 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
 
 # Prerequisites
 
-* A remote Git repository (e.g. a GitHub account.) 
-* A Microsoft Azure account (free and with an automatic spending cap of zero.)
-* Git installed locally (msysgit.github.io)
-* For the purpose of this demo
+* Remote Git repo (e.g. GitHub, BitBucket, Visual Studio Online) 
+* Local Git repo (msysgit.github.io)
+* Microsoft Azure account (free, with automatic spending cap of zero)
+* For this demo
   * PowerShell
-  * NPM (the node package manager)
+  * NPM (node package manager)
   * Node
-  * Azure Command Line Interface
+  * Azure Command Line Interface (azure-cli)
 
 # Remote: Setup a Git Repo
 
-This is the remote Git repository that stores our source code. [github.com]() has detailed instructions.
+This is the remote Git repository that stores our source code. See [github.com]() for detailed instructions.
 
 * Setup a remote repository.
 * Copy it's uri.
@@ -272,7 +271,7 @@ Since we added a failing test, Kudu will not sync.
 
 # Kudu Sync
 
-     -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+    kudu -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
 
     -v Verbose logging with maximum number of output lines
     -f Source directory to sync
@@ -280,6 +279,8 @@ Since we added a failing test, Kudu will not sync.
     -n Next manifest file path
     -p Previous manifest file path
     -i List of files/directories not to sync, delimited by `;`
+
+TODO: How can we sync just static files (e.g. CSS).
 
 # Notes
 
