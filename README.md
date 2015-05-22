@@ -4,7 +4,7 @@ We'll present this again on [23 May in Vancouver](http://www.meetup.com/Vancouve
 
 # Overview
 
-Use Visual Studio, Git, and Azure Web Apps to quickly test out development scenarios or do continiuous integration over the long term. This talk will cover: 
+Use Visual Studio, Git, and Azure Web Apps to quickly test out development scenarios or do continuous integration over the long term. This talk will cover: 
 
 * NuGet in Visual Studio to keep assemblies out of version control
 * Git to commit locally and then push to a remote (in the demo, we'll use GitHub) 
