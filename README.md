@@ -7,14 +7,16 @@ We'll present this again on [23 May in Vancouver](http://www.meetup.com/Vancouve
 Use Visual Studio, Git, and Azure Web Apps to quickly test out development scenarios or do continuous integration over the long term. This talk will cover: 
 
 * NuGet in Visual Studio to keep assemblies out of version control
-* Git to commit locally and then push to a remote (in the demo, we'll use GitHub) 
+* Git to commit locally and then push to a remote (in the demo, we'll use GitHub)
     * we could also use Visual Studio Online 
 * Azure Web Apps that use Kudu to deploy from version control
 
-This lightweight workflow allows quick scenario testing in which we spin up an Azure Web App and tear it down when we've finished. For longer term continuous integration and testing scenarios, we'll also cover:
+This workflow can be lightweight enough for scenario testing, in which we spin up an Azure Web App and tear it down when we've finished. It can also support longer term continuous integration and testing scenarios. 
+
+We'll also cover:
 
 * multiple deployment slots in Azure Web Apps that connect to multiple Git branches
-* Kudu deployment scripts that tell Azure to run our unit tests and only Sync builds that pass
+* Kudu deployment scripts that tell Azure to run our unit tests and sync only builds that pass
 * the web-based service control manager for Web Apps (at mydomain.scm.azurewebsites.net)
 
 In short, well cover:
