@@ -46,7 +46,7 @@ This is the remote Git repository that stores our source code. See [github.com](
 * Copy it's uri.
 * For the demo we'll use `git@github.com:bigfont/silly-frogs.git`
 
-# Local: Setup Git
+# Local: Setup Git and Hello World
 
 The is our development environment.
 
