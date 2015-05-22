@@ -50,14 +50,15 @@ This is the remote Git repository that stores our source code. [github.com]() ha
 
 The is our development environment.
 
-[PowerShell] Create a new directory with a `.gitignore` file.
+[PowerShell] Create a new directory with a `.gitignore` file and a default document.
 
     New-Item -type dir Deploy2Azure
     cd Deploy2Azure
     New-Item -type f .gitignore
     Add-Content .gitignore ("bin/" + "`n" + "obj/" + "`n")
+    New-Item -type f index.html 
     
-[Git] Initiate git to speak to the remote with a `master` and `staging` branch.
+[Git & PowerShell] Initiate git to speak to the remote with a `master` and `staging` branch.
 
     git init
     git remote add origin git@github.com:bigfont/Deploy2Azure.git
