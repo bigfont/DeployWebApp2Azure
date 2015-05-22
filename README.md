@@ -57,7 +57,7 @@ The is our development environment.
 [Git] Initiate git to speak to the remote with a `master` and `staging` branch.
 
     git init
-    git remote add origin <uri>
+    git remote add origin git@github.com:shaunluttin/Deploy2Azure.git
     git pull origin master
     git add -A
     git commit -m "Initial commit."
