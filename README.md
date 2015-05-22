@@ -41,7 +41,7 @@ This is the remote Git repository that stores our source code. [github.com]() ha
 
 * Setup a remote repository. 
 * Copy it's uri.
-* For the demo we'll use `git@github.com:shaunluttin/Deploy2Azure.git`
+* For the demo we'll use `git@github.com:bigfont/Deploy2Azure.git`
 
 # Local
 
@@ -57,7 +57,7 @@ The is our development environment.
 [Git] Initiate git to speak to the remote with a `master` and `staging` branch.
 
     git init
-    git remote add origin git@github.com:shaunluttin/Deploy2Azure.git
+    git remote add origin git@github.com:bigfont/Deploy2Azure.git
     git pull origin master
     git add -A
     git commit -m "Initial commit."
