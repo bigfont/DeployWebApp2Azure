@@ -15,7 +15,6 @@ Scenarios
 * short-term scenario testing
 * long-term continuous integration
 
-
 We'll also cover:
 
 * multiple Azure deployment slots connected to multiple Git branches
@@ -63,10 +62,22 @@ The is our development environment.
     git init
     git remote add origin git@github.com:bigfont/silly-frogs.git
     # git pull origin master # necessary if remote has newer content
+
     git add -A
     git commit -m "Initial commit."
+
+    # add MASTER to index.html first
+
+    git add -A
+    git commit -m "Add MASTER flag."
     git push --set-upstream origin master
+
     git checkout -b staging
+    
+    # add STAGING to index.html first
+
+    git add -A
+    git commit -m "Add staging flag."
     git push --set-upstream origin staging
 
 # Azure: Create a Web App
