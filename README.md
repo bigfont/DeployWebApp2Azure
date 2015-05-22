@@ -104,7 +104,13 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
     * RepositoryName > `Deploy2Azure`
     * Branch to Deploy > `staging`
 
-At this point, we will have two **Hello World.** sites. One for master, another for staging. We can demonstration by updating the index.html file in staging. 
+We can view the details of the deployments slot with this command. 
+
+    azure site show deployapp2azure
+
+At this point, we will have two **Hello World.** sites. One for master, another for staging. We can demonstration this by updating the index.html file in the `staging` branch with staging content.
+
+[Git & PowerShell]
 
     git checkout staging
     Add-Content index.html "Staging"
@@ -112,11 +118,32 @@ At this point, we will have two **Hello World.** sites. One for master, another 
     git commit -m "Add staging content."
     git push
 
-We can view the details of the deployments slot with this command. 
+# Local: Add a Simple Deployment Script
 
-    azure site show deployapp2azure
+* Install Azure Command Line Interface
+* Create a custom deployment script
 
-# Create ASP.NET Web Application
+[PowerShell]
+
+    New-Item .deployment
+    New-Item deploy.cmd
+    
+The `.deployment` file is optional. We can set value either in it or in the app settings of our Web App. To start with, let's just add `echo Hello world.` to our custom deployment file. 
+
+    Add-Content deploy.cmd "echo Hello world.
+    git add -A
+    git commit -m "Add deployment script."
+    git push
+
+For a more complex script that uses Kudu sync, run the follow command (alternatively, retrieve this from `scm` online.)
+
+[CMD] Scaffold a deployment script.
+
+    azure site deploymentscript --aspWAP MyWebApp\MyWebApp.csproj -s MyWebApp.sln
+
+* Be careful with your file paths!
+
+# Local: Create ASP.NET Web Application
 
 * Open Visual Studio
 * New a new Empty Web App (New Project > Templates > Visual C# > Web > ASP.NET Web Application)
@@ -141,7 +168,7 @@ We can view the details of the deployments slot with this command.
 
 * Remember --> Azure will deploy this :-)
 
-# Add Unit Test 
+# Local: Add Unit Test 
 
 * Open MyWebApp.sln in Visual Studio
 * Right click the solution > Add > New Project > Visual C# > Test > MyWebApp.Test
@@ -170,15 +197,6 @@ We can view the details of the deployments slot with this command.
 
 # Integrate Unit Tests into Deployment
 
-* Install Azure Command Line Interface
-* Create a custom deployment script
-
-[Command Line]
-
-    npm install azure-cli -g
-    azure site deploymentscript --aspWAP MyWebApp\MyWebApp.csproj -s MyWebApp.sln
-
-* Be careful with your file paths!
 * Edit the Kudu deploy.cmd file.
 
 [Kudu Script]
