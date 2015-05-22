@@ -120,23 +120,6 @@ At this point, we will have two **Hello World.** sites. One for master, another 
     git commit -m "Add staging content."
     git push
 
-# Local: Add a Simple Deployment Script
-
-* Create a custom deployment script
-
-[PowerShell]
-
-    New-Item .deployment
-    New-Item deploy.cmd
-    
-The `.deployment` file is optional. We can set value either in it or in the app settings of our Web App. To start with, let's just add `echo Hello world.` to our custom deployment file. 
-
-	Add-Content .deployment "[config] `r`n command = deploy.cmd"
-    Add-Content deploy.cmd "echo Hello world.
-    git add -A
-    git commit -m "Add deployment script."
-    git push
-
 # Local: Create ASP.NET Web Application
 
 * Open Visual Studio
@@ -167,7 +150,24 @@ The `.deployment` file is optional. We can set value either in it or in the app 
     git commit -m "Create empty ASP.NET Web Application"
     git push
 
-* Remember --> Azure will deploy this :-)
+Remember: This will deploy to our staging deployment slot. We're currently using the default deployment command that comes out of the box with an Azure Web App. Let's start to customize this.
+
+# Local: Add a Simple Deployment Script
+
+* Create a custom deployment script
+
+[PowerShell]
+
+    New-Item .deployment
+    New-Item deploy.cmd
+    
+The `.deployment` file is optional. We can set value either in it or in the app settings of our Web App. To start with, let's just add `echo Hello world.` to our custom deployment file. 
+
+	Add-Content .deployment "[config] `r`n command = deploy.cmd"
+    Add-Content deploy.cmd "echo Hello world.
+    git add -A
+    git commit -m "Add deployment script."
+    git push
 
 # Local: Add Unit Test 
 
@@ -197,14 +197,6 @@ The `.deployment` file is optional. We can set value either in it or in the app 
 * The unit tests will not build nor run yet. 
 
 # Integrate Unit Tests into Deployment
-
-For a more complex script that uses Kudu sync, run the follow command (alternatively, retrieve this from `scm` online.)
-
-[CMD] Scaffold a deployment script.
-
-    azure site deploymentscript --aspWAP MyWebApp\MyWebApp.csproj -s MyWebApp.sln
-
-* Be careful with your file paths!
 
 * Edit the Kudu deploy.cmd file.
 
