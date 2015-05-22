@@ -41,7 +41,7 @@ This is the remote Git repository that stores our source code. [github.com]() ha
 
 * Setup a remote repository. 
 * Copy it's uri.
-* For the demo we'll use `git@github.com:shaunluttin/DeployWebApp2Azure.git`
+* For the demo we'll use `git@github.com:shaunluttin/Deploy2Azure.git`
 
 # Local
 
@@ -49,8 +49,8 @@ The is our development environment.
 
 [PowerShell] Create a new directory with a `.gitignore` file.
 
-    New-Item -type dir DeployWebApp2Azure
-    cd DeployWebApp2Azure
+    New-Item -type dir Deploy2Azure
+    cd Deploy2Azure
     New-Item -type f .gitignore
     Add-Content .gitignore ("bin/" + "`n" + "obj/" + "`n")
     
@@ -74,7 +74,7 @@ This is where we're hosting our Web App.
 * Go to its Dashboard 
     * Setup deployment from source control
     * GitHub
-    * Repository Name > `DeployWebApp2Azure`
+    * Repository Name > `Deploy2Azure`
     * Branch to Deploy > `master`
 
 * Return to the Azure Dashboard
@@ -84,7 +84,7 @@ This is where we're hosting our Web App.
 * Go to Azure Dashboard for the *staging deployment slot*
     * Setup deployment from source control
     * GitHub
-    * RepositoryName > `DeployWebApp2Azure`
+    * RepositoryName > `Deploy2Azure`
     * Branch to Deploy > `staging`
 
 # Create ASP.NET Web Application
@@ -120,7 +120,7 @@ This is where we're hosting our Web App.
 
 [Directory Structure]
 
-    DeployWebApp2Azure
+    Deploy2Azure
         .git
         .gitignore
         MyWebApp.sln
