@@ -226,3 +226,7 @@ For a more complex script that uses Kudu sync, run the follow command (alternati
 * If you want to run \Release\ tests, then build with /property:Configuration=Release
 * Kudu builds into a temporary folder and then syncs the result if the build and tests succeed.
 * We can switch staging and master with a single click of Swap from the Web App dashboard.
+
+# Possible Additions
+
+* It's a good list. Maybe you can add some ARM based deployments. Also GitHub Deploy Button is good. From [David Ebbo]( https://twitter.com/davidebbo/status/601607544302243841)
