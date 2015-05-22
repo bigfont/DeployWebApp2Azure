@@ -130,8 +130,7 @@ At this point, we will have two **Hello World.** sites. One for master, another 
   * Solution Name: `Create new solution`
   * Create directory for solution: `NO`
   * Add to source control: `NO`
-
-* Resultant directory structure
+* Empty (the others have too much distraction.)
 
 [Directory Structure]
 
@@ -152,26 +151,54 @@ At this point, we will have two **Hello World.** sites. One for master, another 
     git commit -m "Create empty ASP.NET Web Application"
     git push
 
-Remember: This will deploy to our staging deployment slot. We're currently using the default deployment command that comes out of the box with an Azure Web App. Let's start to customize this.
+Remember: This will deploy to our staging deployment slot. We're currently using the default deployment command that comes out of the box with an Azure Web App. Often this is sufficient.
 
-# Local: Add a Simple Deployment Script
+[SCM] Resultant wwwroot on Azure with default deployment script.
+
+    bin
+        MyWebApp.dll
+    .gitignore
+    index.html
+    web.config
+
+The Web App lacks functionality, so lets add simple MVC scaffolding.
+
+* Controller etc
+  * Solution Explorer > Project > Right Click
+  * Add > New Scaffold Item
+  * Common > MVC > Controller > MVC 5 Controller - Empty
+  * `DefaultController`
+* View
+  * Inside DefaultController.cs > Right Click `Index()` > Add View > Accept Defaults
+
+[Git]
+
+    git add -A
+    git commit -m "Add MVC scaffolding."
+    git push
+
+Again, this will deploy to Azure with the default deployment commands.
+
+* Default is still `index.html` with Hello World.
+* We can also view `~/default` now. 
+
+# Local: Add a Simple, Custom Deployment Script
 
 * Create a custom deployment script
 
 [PowerShell]
 
-    New-Item .deployment
-    New-Item deploy.cmd
-    
 The `.deployment` file is optional. We can set value either in it or in the app settings of our Web App. To start with, let's just add `echo Hello world.` to our custom deployment file. 
 
-	Add-Content .deployment "[config] `r`n command = deploy.cmd"
-    Add-Content deploy.cmd "echo Hello world.
+	Add-Content .deployment "[config] `r`n command = deploy-nothing.cmd"
+    Add-Content deploy-nothing.cmd "echo Deploying nothing."
     git add -A
     git commit -m "Add deployment script."
     git push
 
-# Local: Add Unit Test 
+Note: This no longer does any deployment! It **only** echos "Hello World."
+
+# Local: Add Unit Tests
 
 * Open MyWebApp.sln in Visual Studio
 * Right click the solution > Add > New Project > Visual C# > Test > MyWebApp.Test
@@ -179,7 +206,7 @@ The `.deployment` file is optional. We can set value either in it or in the app 
 
 [Directory Structure]
 
-    Deploy2Azure
+    SillyFrogs
         .git
         .gitignore
         MyWebApp.sln
