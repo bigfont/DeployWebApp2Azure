@@ -38,7 +38,7 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
   * Node
   * Azure Command Line Interface
 
-# Setup a Remote Git Repo
+# Remote: Setup a Git Repo
 
 This is the remote Git repository that stores our source code. [github.com]() has detailed instructions.
 
@@ -46,7 +46,7 @@ This is the remote Git repository that stores our source code. [github.com]() ha
 * Copy it's uri.
 * For the demo we'll use `git@github.com:bigfont/Deploy2Azure.git`
 
-# Local
+# Local: Setup Git
 
 The is our development environment.
 
@@ -68,11 +68,18 @@ The is our development environment.
     git checkout -b staging
     git push --set-upstream origin staging
 
-# Azure
+# Azure: Create a Web App
 
 This is where we're hosting our Web App.
 
-* Create new Azure Web App
+There are both UI gestures to do this or we can use the Azure Command Line Interface. 
+
+[CMD] Create a new MS Azure Web App
+
+    npm install azure-cli -g
+    azure account download
+    azure account import <file>
+    azure site create --location "West US" Deploy2Azure
 
 * Go to its Dashboard 
     * Setup deployment from source control
