@@ -62,7 +62,7 @@ The is our development environment.
 
     git init
     git remote add origin git@github.com:bigfont/Deploy2Azure.git
-    # git pull origin master
+    # git pull origin master # necessary if remote has newer content
     git add -A
     git commit -m "Initial commit."
     git push --set-upstream origin master
