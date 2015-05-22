@@ -42,9 +42,9 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
 
 This is the remote Git repository that stores our source code. [github.com]() has detailed instructions.
 
-* Setup a remote repository with a README.md
+* Setup a remote repository.
 * Copy it's uri.
-* For the demo we'll use `git@github.com:bigfont/Deploy2Azure.git`
+* For the demo we'll use `git@github.com:bigfont/silly-frogs.git`
 
 # Local: Setup Git
 
@@ -52,8 +52,8 @@ The is our development environment.
 
 [PowerShell] Create a new directory with a `.gitignore` file and a default document.
 
-    New-Item -type dir Deploy2Azure
-    cd Deploy2Azure
+    New-Item -type dir SillyFrogs
+    cd SillyFrogs
     New-Item -type f .gitignore
     Add-Content .gitignore ("bin/" + "`n" + "obj/" + "`n")
     Add-Content index.html "Hello World."
@@ -61,7 +61,7 @@ The is our development environment.
 [Git & PowerShell] Initiate git to speak to the remote with a `master` and `staging` branch.
 
     git init
-    git remote add origin git@github.com:bigfont/Deploy2Azure.git
+    git remote add origin git@github.com:bigfont/silly-frogs.git
     # git pull origin master # necessary if remote has newer content
     git add -A
     git commit -m "Initial commit."
@@ -80,7 +80,7 @@ There are both UI gestures to do this or we can use the Azure Command Line Inter
     npm install azure-cli -g
     azure account download
     azure account import <file>
-    azure site create --location "West US" Deploy2Azure
+    azure site create --location "West US" SillyFrogs
     # after doing this, 
     # we might have to upgrade its pricing tier
     # to allow for multiple deployment slots
@@ -90,7 +90,7 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
 * Go to the Web App's Dashboard 
     * Setup deployment from source control
     * GitHub
-    * Repository Name > `Deploy2Azure`
+    * Repository Name > `SillyFrogs`
     * Branch to Deploy > `master`
 
 * Return to the Azure Dashboard
@@ -101,12 +101,12 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
 * Go to Azure Dashboard for the *staging deployment slot*
     * Setup deployment from source control
     * GitHub
-    * RepositoryName > `Deploy2Azure`
+    * RepositoryName > `SillyFrogs`
     * Branch to Deploy > `staging`
 
 We can view the details of the deployments slot with this command. 
 
-    azure site show deployapp2azure
+    azure site show SillyFrogs
 
 At this point, we will have two **Hello World.** sites. One for master, another for staging. We can demonstration this by updating the index.html file in the `staging` branch with staging content.
 
@@ -134,14 +134,6 @@ The `.deployment` file is optional. We can set value either in it or in the app 
     git add -A
     git commit -m "Add deployment script."
     git push
-
-For a more complex script that uses Kudu sync, run the follow command (alternatively, retrieve this from `scm` online.)
-
-[CMD] Scaffold a deployment script.
-
-    azure site deploymentscript --aspWAP MyWebApp\MyWebApp.csproj -s MyWebApp.sln
-
-* Be careful with your file paths!
 
 # Local: Create ASP.NET Web Application
 
@@ -196,6 +188,14 @@ For a more complex script that uses Kudu sync, run the follow command (alternati
 * The unit tests will not build nor run yet. 
 
 # Integrate Unit Tests into Deployment
+
+For a more complex script that uses Kudu sync, run the follow command (alternatively, retrieve this from `scm` online.)
+
+[CMD] Scaffold a deployment script.
+
+    azure site deploymentscript --aspWAP MyWebApp\MyWebApp.csproj -s MyWebApp.sln
+
+* Be careful with your file paths!
 
 * Edit the Kudu deploy.cmd file.
 
