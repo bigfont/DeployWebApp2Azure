@@ -81,7 +81,9 @@ There are both UI gestures to do this or we can use the Azure Command Line Inter
     azure account import <file>
     azure site create --location "West US" Deploy2Azure
 
-* Go to its Dashboard 
+We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
+
+* Go to the Web App's Dashboard 
     * Setup deployment from source control
     * GitHub
     * Repository Name > `Deploy2Azure`
@@ -90,12 +92,17 @@ There are both UI gestures to do this or we can use the Azure Command Line Inter
 * Return to the Azure Dashboard
     * Add a new deployment slot named `staging`
     * Don't clone
+    * (I believe we need to be in a non-free tier to do this.)gi
 
 * Go to Azure Dashboard for the *staging deployment slot*
     * Setup deployment from source control
     * GitHub
     * RepositoryName > `Deploy2Azure`
     * Branch to Deploy > `staging`
+
+We can view the details of the deployments slot with this command. 
+
+    azure site show deployapp2azure
 
 # Create ASP.NET Web Application
 
