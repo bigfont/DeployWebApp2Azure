@@ -28,6 +28,13 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
 * http://deploywebapp2azure.azurewebsites.net/
 * http://deploywebapp2azure-staging.azurewebsites.net/
 
+# Prerequisites
+
+* A was to create a remote Git repository (e.g. a GitHub account.) 
+* A Microsoft Azure account (free and with an automatic spending cap of zero.)
+* Git installed locally (msysgit.github.io)
+* PowerShell (only for the purposes of this demo.)
+
 # Setup a Remote Git Repo
 
 This is the remote Git repository that stores our source code. [github.com]() has detailed instructions.
