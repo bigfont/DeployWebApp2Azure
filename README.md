@@ -30,7 +30,7 @@ This is the LIVE result (it isn't pretty - it's scaffolding):
 
 # Setup a Remote Git Repo
 
-This is the remote Git repository that stores our source code. github.com has detailed instructions.
+This is the remote Git repository that stores our source code. [github.com]() has detailed instructions.
 
 * Setup a remote repository. 
 * Copy it's uri.
