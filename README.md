@@ -81,6 +81,8 @@ The is our development environment.
     git commit -m "Add staging text."
     git push --set-upstream origin staging
 
+We've now setup our local repository with two branches and made it communicate with our Git remote.
+
 # Azure: Create a Web App
 
 This is where we're hosting our Web App.
