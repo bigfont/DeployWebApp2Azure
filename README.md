@@ -65,6 +65,7 @@ The is our development environment.
     git add -A
     git commit -m "Initial commit."
 
+    Clear-Content index.html
     Add-Content index.html "-MASTER-" 
 
     git add -A
@@ -73,6 +74,7 @@ The is our development environment.
 
     git checkout -b staging
     
+    Clear-Content index.html
     Add-Content index.html "-STAGING-"
 
     git add -A
