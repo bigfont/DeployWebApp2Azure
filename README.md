@@ -87,9 +87,9 @@ We've now setup our local repository with two branches and made it communicate w
 
 This is where we're hosting our Web App.
 
-There are UI gestures to do this. Alternatively, we can use the `azure-cli`. 
+There are UI gestures to do this. Alternatively, we can use the Azure command line interface `azure-cli`. 
 
-[CMD] Create a new MS Azure Web App
+[cmd & npm & azure-cli] Create a new MS Azure Web App
 
     npm install azure-cli -g
     azure account download
