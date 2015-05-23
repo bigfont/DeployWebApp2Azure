@@ -53,7 +53,6 @@ The is our development environment.
 
     New-Item -type dir SillyFrogs
     cd SillyFrogs
-    New-Item -type f .gitignore
     Add-Content .gitignore ("bin/" + "`n" + "obj/" + "`n")
     Add-Content index.html "Hello World."
     
@@ -121,14 +120,6 @@ We can view the details of the deployments slot with this command.
     azure site show SillyFrogs --slot staging
 
 At this point, we will have two **Hello World.** sites. One for master, another for staging. We can demonstration this by updating the index.html file in the `staging` branch with staging content.
-
-[Git & PowerShell]
-
-    git checkout staging
-    Add-Content index.html "Staging"
-    git add -A
-    git commit -m "Add staging content."
-    git push
 
 # Local: Create ASP.NET Web Application
 
