@@ -69,7 +69,7 @@ The is our development environment.
     Add-Content index.html "-MASTER-" 
 
     git add -A
-    git commit -m "Add MASTER flag."
+    git commit -m "Add MASTER text."
     git push --set-upstream origin master
 
     git checkout -b staging
@@ -78,7 +78,7 @@ The is our development environment.
     Add-Content index.html "-STAGING-"
 
     git add -A
-    git commit -m "Add staging flag."
+    git commit -m "Add staging text."
     git push --set-upstream origin staging
 
 # Azure: Create a Web App
