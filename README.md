@@ -73,7 +73,7 @@ The is our development environment.
 
     git checkout -b staging
     
-    Add-Conotent index.html "-STAGING-"
+    Add-Content index.html "-STAGING-"
 
     git add -A
     git commit -m "Add staging flag."
