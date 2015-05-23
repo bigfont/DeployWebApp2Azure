@@ -43,7 +43,7 @@ This is the remote Git repository that stores our source code. See [github.com](
 
 * Setup a remote repository.
 * Copy it's uri.
-* For the demo we'll use `git@github.com:bigfont/silly-frogs.git`
+* For the demo we'll use `git@github.com:bigfont/silly-goats.git`
 
 # Local: Setup Git and Hello World
 
@@ -51,15 +51,15 @@ The is our development environment.
 
 [PowerShell] Create a new directory with a `.gitignore` file and a default document.
 
-    New-Item -type dir SillyFrogs
-    cd SillyFrogs
+    New-Item -type dir SillyGoats
+    cd SillyGoats
     Add-Content .gitignore ("bin/" + "`n" + "obj/" + "`n")
     Add-Content index.html "Hello World."
     
 [Git & PowerShell] Initiate git to speak to the remote with a `master` and `staging` branch.
 
     git init
-    git remote add origin git@github.com:bigfont/silly-frogs.git
+    git remote add origin git@github.com:bigfont/silly-goats.git
     # git pull origin master # necessary if remote has newer content
 
     git add -A
@@ -94,7 +94,7 @@ There are UI gestures to do this. Alternatively, we can use the Azure command li
     npm install azure-cli -g
     azure account download
     azure account import <file>
-    azure site create --location "West US" SillyFrogs
+    azure site create --location "West US" SillyGoats
     # after doing this, 
     # we might have to upgrade its pricing tier
     # to allow for multiple deployment slots
@@ -105,7 +105,7 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
 * Go to the Web App's Dashboard 
     * Setup deployment from source control
     * GitHub
-    * Repository Name > `SillyFrogs`
+    * Repository Name > `SillyGoats`
     * Branch to Deploy > `master`
 
 * Return to the Azure Dashboard
@@ -116,12 +116,12 @@ We'll do the rest using the MS Azure UI thought the `azure-cli` works too.
 * Go to Azure Dashboard for the staging deployment slot
     * Setup deployment from source control
     * GitHub
-    * RepositoryName > `SillyFrogs`
+    * RepositoryName > `SillyGoats`
     * Branch to Deploy > `staging`
 
 We can view the details of the deployments slot with this command. 
 
-    azure site show SillyFrogs --slot staging
+    azure site show SillyGoats --slot staging
 
 At this point, we will have two **Hello World.** sites. One for master, another for staging. We can demonstration this by updating the index.html file in the `staging` branch with staging content.
 
@@ -196,7 +196,7 @@ Again, this will deploy to Azure with the default deployment commands.
 
 [Directory Structure]
 
-    SillyFrogs
+    SillyGoats
 		.git
 		.vs
 		MyWebApp
