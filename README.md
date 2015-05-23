@@ -65,7 +65,7 @@ The is our development environment.
     git add -A
     git commit -m "Initial commit."
 
-    # add MASTER to index.html first
+    Add-Content index.html "-MASTER-" 
 
     git add -A
     git commit -m "Add MASTER flag."
@@ -73,7 +73,7 @@ The is our development environment.
 
     git checkout -b staging
     
-    # add STAGING to index.html first
+    Add-Conotent index.html "-STAGING-"
 
     git add -A
     git commit -m "Add staging flag."
