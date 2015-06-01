@@ -75,25 +75,12 @@ IF /I "MyWebApp.sln" NEQ "" (
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-:: 2. Build to the temporary path
+:: 2. Copy only Content files (generally static) without a build.
 
-IF /I "%STATIC_CONTENT_ONLY%" NEQ "1" (
+  echo Copying Content Files to the temp directory 
 
-  echo Full Build
-
-  IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-    call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp\MyWebApp.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS% /p:VisualStudioVersion=14.0
-  ) ELSE (
-    call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp\MyWebApp.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
-  )
-
-) ELSE (
-
-  echo Static Copy 
   call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\StaticContentOnly.csproj" /p:ParentProj="%DEPLOYMENT_SOURCE%\MyWebApp\MyWebApp.csproj" /p:_PackageTempDir="%DEPLOYMENT_TEMP%" /p:VisualStudioVersion=14.0
  
-)
-
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 3. KuduSync
