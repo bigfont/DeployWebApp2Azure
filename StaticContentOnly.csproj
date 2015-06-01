@@ -43,12 +43,16 @@
        </projContent>
      </ItemGroup>
 
+     <!-- Debugging --> 
+
      <Message Text="Parent Dir : $(_ParentDir)" Importance="high" />
      <Message Text="Current Dir : $(_CurrentDir)" Importance="high" />
      <Message Text="Parent Rel : $(_ParentRelativeDir)" Importance="high" />
      <Message Text="Temp Save File : @(ProjContentFixed)" Importance="high" />
      <Message Text="Test : @(projContent-> '%(Source)')" Importance="high" />
      <Message Text="Test : @(projContent-> '%(Destination)')" Importance="high" />
+
+     <!-- End Debugging -->
 
      <Copy SourceFiles="@(projContent->'%(SourceFile)')"
         DestinationFiles="@(projContent->'%(DestinationFile)')"/>
