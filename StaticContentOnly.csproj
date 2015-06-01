@@ -37,17 +37,21 @@
      <!-- This item will contain the item with the corrected path values -->
 
      <ItemGroup>
-       <ProjContentFixed 
-           Include="@(projContent->'$(_ParentRelativeDir)%(RelativeDir)%(Filename)%(Extension)')"/>
+       <projContent>
+         <SourceFile>$(_ParentRelativeDir)\%(RelativeDir)%(Filename)%(Extension)</SourceFile>
+         <DestinationFile>$(_PackageTempDir)\%(RelativeDir)%(Filename)%(Extension)</DestinationFile>
+       </projContent>
      </ItemGroup>
 
      <Message Text="Parent Dir : $(_ParentDir)" Importance="high" />
      <Message Text="Current Dir : $(_CurrentDir)" Importance="high" />
      <Message Text="Parent Rel : $(_ParentRelativeDir)" Importance="high" />
+     <Message Text="Temp Save File : @(ProjContentFixed)" Importance="high" />
+     <Message Text="Test : @(projContent-> '%(Source)')" Importance="high" />
+     <Message Text="Test : @(projContent-> '%(Destination)')" Importance="high" />
 
-     <!-- <Copy SourceFiles="@(ProjContentFixed)"
-           DestinationFiles="@(ProjContentFixed->'$(_PackageTempDir)\%(Filename)%(Extension)')"/>
-     -->
+     <Copy SourceFiles="@(projContent->'%(SourceFile)')"
+        DestinationFiles="@(projContent->'%(DestinationFile)')"/>
 
   </Target>
 

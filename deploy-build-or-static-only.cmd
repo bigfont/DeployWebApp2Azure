@@ -1,5 +1,7 @@
 @if "%SCM_TRACE_LEVEL%" NEQ "4" @echo off
 
+SET STATIC_CONTENT_ONLY=1
+
 :: ----------------------
 :: KUDU Deployment Script
 :: Version: 0.2.2
@@ -74,10 +76,22 @@ IF /I "MyWebApp.sln" NEQ "" (
 )
 
 :: 2. Build to the temporary path
-IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp\MyWebApp.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS% /p:VisualStudioVersion=14.0
+
+IF /I "%STATIC_CONTENT_ONLY%" NEQ "1" (
+
+  echo Full Build
+
+  IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+    call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp\MyWebApp.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS% /p:VisualStudioVersion=14.0
+  ) ELSE (
+    call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp\MyWebApp.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+  )
+
 ) ELSE (
-  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\MyWebApp\MyWebApp.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+
+  echo Static Copy 
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\StaticContentOnly.csproj" /p:ParentProj="%DEPLOYMENT_SOURCE%\MyWebApp\MyWebApp.csproj" /p:_PackageTempDir="%DEPLOYMENT_TEMP%" /p:VisualStudioVersion=14.0
+ 
 )
 
 IF !ERRORLEVEL! NEQ 0 goto error
